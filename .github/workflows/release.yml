@@ -29,6 +29,14 @@ jobs:
          sleep 1
          echo "cmd3"
          sleep 1      
+         echo "{"
+         sleep 1      
+         echo "cmd4"
+         sleep 1
+         echo "cmd5"
+         sleep 1      
+         echo "}"
+         sleep 1
 #      - name: Run application
 #        run: |
 #         ./bulk 3 &
