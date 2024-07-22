@@ -19,7 +19,14 @@ jobs:
       - run: cmake . -DPATCH_VERSION=${{ github.run_number }}
       - run: cmake --build .
       - run: cmake --build . --target test
-      - run: cmake --build . --target package
+      - run: cmake --build . --target package      
+      - run: ./bulk 3 &
+  	      sleep 1
+  	      for i in cmd1 cmd2 cmd3; do
+  	  	echo i | xargs -0 ./bulk
+  	  	sleep 1
+  	      done
+  	      pkill bulk   
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -40,13 +47,4 @@ jobs:
           asset_path: ./bulk_prg-0.1.${{ github.run_number }}-Linux.deb
           asset_name: bulk_prg-0.1.${{ github.run_number }}-Linux.deb
           asset_content_type: application/vnd.debian.binary-package
-#  test:
-#  	steps:
-#  	- name: Run application and send test strings
-  	  run: ./bulk 3 &
-  	  	sleep 1
-  	  	for i in cmd1 cmd2 cmd3; do
-  	  	  echo i | xargs -0 ./bulk
-  	  	  sleep 1
-  	  	done
-  	  	pkill bulk
+
