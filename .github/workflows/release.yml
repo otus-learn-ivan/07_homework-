@@ -21,31 +21,50 @@ jobs:
       - run: cmake --build . --target test
       - run: cmake --build . --target package  
       - name: Run application
-        run: |
-         ./bulk 3 &
-         sleep 1
-         sleep 1
-         sleep 1
-         sleep 1
-         echo "cmd1"
-         sleep 1
-         echo "cmd2"
-         sleep 1
-         echo "cmd3"
-         sleep 1      
-         echo "{"
-         sleep 1      
-         echo "cmd4"
-         sleep 1
-         echo "cmd5"
-         sleep 1      
-         echo "}"
-         sleep 1
-         sleep 1
-         sleep 1
-         sleep 1
-         pkill bulk
-         ls
+         run: |
+          ./bulk 3 <(
+            echo "cmd1"
+            echo ""
+            sleep1
+            echo "cmd2"
+            sleep1
+            echo ""
+            sleep1
+            echo "cmd3"
+            echo ""
+            sleep1
+            echo "cmd4"
+            echo ""
+            sleep1
+            echo "cmd5"
+          )
+      - name: Check for created files
+        run: ls -l      
+ #      run: |
+ #        ./bulk 3 &
+ #        sleep 1
+ #        sleep 1
+ #        sleep 1
+ #        sleep 1
+ #        echo "cmd1"
+ #        sleep 1
+ #        echo "cmd2"
+ #        sleep 1
+ #        echo "cmd3"
+ #        sleep 1      
+ #        echo "{"
+ #        sleep 1      
+ #        echo "cmd4"
+ #        sleep 1
+ #        echo "cmd5"
+ #        sleep 1      
+ #        echo "}"
+ #        sleep 1
+ #        sleep 1
+ #        sleep 1
+ #        sleep 1
+ #        pkill bulk
+ #        ls
 #      - name: Run application
 #        run: |
 #         ./bulk 3 &
