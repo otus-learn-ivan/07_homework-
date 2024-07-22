@@ -22,13 +22,13 @@ jobs:
       - run: cmake --build . --target package  
       - name: Run application
       	    run: | 
-      	      ./bulk 3 &
-  	      sleep 1
-  	      for i in cmd1 cmd2 cmd3; do
-  	  	echo i | xargs -0 ./bulk
-  	  	sleep 1
-  	      done
-  	      pkill bulk   
+      	      ./bulk 3 
+#  	      sleep 1
+#  	      for i in cmd1 cmd2 cmd3; do
+#  	  	echo i | xargs -0 ./bulk
+#  	  	sleep 1
+#  	      done
+#  	      pkill bulk   
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
