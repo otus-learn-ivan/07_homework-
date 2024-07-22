@@ -41,6 +41,7 @@ jobs:
           asset_name: bulk_prg-0.1.${{ github.run_number }}-Linux.deb
           asset_content_type: application/vnd.debian.binary-package
   test:
+  	steps:
   	- name: Run application and send test strings
   	  run: ./bulk 3 &
   	  	sleep 1
