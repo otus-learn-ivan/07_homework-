@@ -23,6 +23,10 @@ jobs:
       - name: Run application
         run: |
          ./bulk 3 &
+         sleep 1
+         sleep 1
+         sleep 1
+         sleep 1
          echo "cmd1"
          sleep 1
          echo "cmd2"
@@ -36,6 +40,9 @@ jobs:
          echo "cmd5"
          sleep 1      
          echo "}"
+         sleep 1
+         sleep 1
+         sleep 1
          sleep 1
 #      - name: Run application
 #        run: |
