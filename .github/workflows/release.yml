@@ -25,17 +25,12 @@ jobs:
           ./bulk 3 <(
             echo "cmd1"
             echo ""
-            sleep1
             echo "cmd2"
-            sleep1
             echo ""
-            sleep1
             echo "cmd3"
             echo ""
-            sleep1
             echo "cmd4"
             echo ""
-            sleep1
             echo "cmd5"
           )
       - name: Check for created files
