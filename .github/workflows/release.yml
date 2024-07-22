@@ -22,7 +22,7 @@ jobs:
       - run: cmake --build . --target package  
       - name: Run application
         run: |
-          ./bulk 3 <(
+          ./bulk 3 &
             echo "cmd1"
             echo ""
             echo "cmd2"
@@ -32,7 +32,6 @@ jobs:
             echo "cmd4"
             echo ""
             echo "cmd5"
-          )
       - name: Check for created files
         run: ls -l      
  #      run: |
