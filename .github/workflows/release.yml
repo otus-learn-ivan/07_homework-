@@ -44,6 +44,8 @@ jobs:
          sleep 1
          sleep 1
          sleep 1
+         pkill bulk
+         ls
 #      - name: Run application
 #        run: |
 #         ./bulk 3 &
