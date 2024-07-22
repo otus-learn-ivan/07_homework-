@@ -21,7 +21,7 @@ jobs:
       - run: cmake --build . --target test
       - run: cmake --build . --target package  
       - name: Run application
-         run: |
+        run: |
           ./bulk 3 <(
             echo "cmd1"
             echo ""
