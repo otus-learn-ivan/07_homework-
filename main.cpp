@@ -14,7 +14,6 @@ public:
 class Tlogger_to_file: public Tlogger{
     static const string title_file_name;
     void print(size_t tiks_start,string b){
-        return ;
         string file_name = title_file_name+ to_string(tiks_start)+".log";
         ofstream file_(file_name);
         if(file_.is_open()){
@@ -121,7 +120,7 @@ int main(int argc, char* argv[])
 {
     if(argc == 1){return 0;}
     unique_ptr <Tparser_cmd> parser_cmd =  make_unique<Tparser_cmd>( atoi(argv[1]));
-    cout << " Hello Bulk\n";
+   // cout << " Hello Bulk\n";
     string cmd;
     while (getline(cin, cmd) && !cin.eof()) {
         (*(*parser_cmd)(cmd)).print_poket().log_poket();
