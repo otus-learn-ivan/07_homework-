@@ -52,30 +52,46 @@ std::vector<std::string>  set_suit_cmd( std::vector<std::string>& commands ){
         std::cerr << "Ошибка запуска процесса bulk\n";
         return std::vector<std::string>{};
     }
-
     // Отправляем команды с задержкой
     for (const auto& cmd : commands) {
         fprintf(pipe, "%s\n", cmd.c_str());
         std::cout << cmd << std::endl;
+        // Читаем и выводим результат из pipe
+         char buffer[1024];
+         while (fgets(buffer, sizeof(buffer), pipe) != nullptr) {
+             std::cout << "Получено: " << buffer << std::endl;
+         }
         sleep(1); // задержка в 1 секунду
     }
-
     // Закрываем поток для записи
     pclose(pipe);
     return created_files_log();
 }
 
+void print_file(std::string name_file){
+    std::cout << name_file<<": ";
+    std::ifstream file(name_file);
+    if (!file.is_open()) {
+        std::cerr << "Ошибка открытия файла: " << name_file << std::endl;
+        return;
+    }
+    std::string line;
+    while (std::getline(file, line)) {
+        std::cout << line << std::endl;
+    }
+    file.close();
+}
 
 BOOST_AUTO_TEST_CASE(test_valid)
 {
-  std::cout <<"test_valid" << std::endl;
   // Формируем команды
-  std::vector<std::string> suit_commands1 = {"cmd10", "cmd2", "cmd3","cmd4","cmd5","cmd6"};
-  auto log_files = set_suit_cmd(suit_commands1);
-  for (auto& files : log_files) {
-      std::cout << files<<"\n";
+  std::vector<std::string> suit_commands1 = {"cmd1", "cmd2", "cmd3","cmd4","cmd5"};
+  set_suit_cmd(suit_commands1);
+  std::vector<std::string> suit_commands2 = {"cmd1", "cmd2","{", "cmd3","cmd4","}","{","cmd5","cmd6","{","cmd7","cmd8","}","cmd9","}","{","cmd10","cmd11"};
+  for (auto& files : set_suit_cmd(suit_commands2)){
+      print_file(files);
   }
-  //system("rm *.log");
+  system("rm *.log");
 }
 
 BOOST_AUTO_TEST_SUITE_END()

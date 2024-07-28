@@ -120,7 +120,6 @@ int main(int argc, char* argv[])
 {
     if(argc == 1){return 0;}
     unique_ptr <Tparser_cmd> parser_cmd =  make_unique<Tparser_cmd>( atoi(argv[1]));
-   // cout << " Hello Bulk\n";
     string cmd;
     while (getline(cin, cmd) && !cin.eof()) {
         (*(*parser_cmd)(cmd)).print_poket().log_poket();
